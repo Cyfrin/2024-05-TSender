@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.zasm": "arm",
+        "*.opcodes": "arm",
+    },
+}
