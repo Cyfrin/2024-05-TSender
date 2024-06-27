@@ -1,12 +1,35 @@
 # TSender
 
-<p align="center">
-<img src="https://res.cloudinary.com/droqoz7lg/image/upload/q_90/dpr_2.0/c_fill,g_auto,h_320,w_320/f_auto/v1/company/vaehvon5t7dyfqumlm34?_a=BATAUVAA0" width="500" alt="gas-vs-1.png">
-<br/>
+- [TSender](#tsender)
+- [Contest Details](#contest-details)
+    - [Stats](#stats)
+  - [Percent Gas Efficiency Improvement vs Solidity](#percent-gas-efficiency-improvement-vs-solidity)
+- [About](#about)
+  - [TSender Features](#tsender-features)
+  - [GasliteDrop Comparison](#gaslitedrop-comparison)
+  - [Gas Comparisons](#gas-comparisons)
+    - [Efficiency Improvement vs Solidity](#efficiency-improvement-vs-solidity)
+    - [Actual Gas Costs](#actual-gas-costs)
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+    - [foundry-zksync](#foundry-zksync)
+  - [Installation](#installation)
+  - [Quickstart / Usage](#quickstart--usage)
+    - [Testing](#testing)
+    - [Testing with zkSync](#testing-with-zksync)
+      - [Why no stateful fuzz tests?](#why-no-stateful-fuzz-tests)
+    - [Deployment](#deployment)
+  - [Known issues](#known-issues)
+  - [Expected Token Integrations](#expected-token-integrations)
+  - [Scope](#scope)
+  - [Chain compatibility](#chain-compatibility)
+    - [Target deployment chains](#target-deployment-chains)
+  - [Notes](#notes)
+- [Acknowledgements](#acknowledgements)
 
-# Contest Details
+[//]: # (contest-details-open)
 
-### Prize Pool
+## Contest Details
 
 - Total Prize Pool: $15,000
 - H/M - $12,500
@@ -26,35 +49,6 @@
 <p align="center">
 <img src="https://res.cloudinary.com/droqoz7lg/image/upload/v1716307743/gas-vs-1_pm5nhv.png" width="500" alt="gas-vs-1.png">
 <br/>
-
-- [TSender](#tsender)
-- [Contest Details](#contest-details)
-    - [Prize Pool](#prize-pool)
-    - [Stats](#stats)
-  - [Percent Gas Efficiency Improvement vs Solidity](#percent-gas-efficiency-improvement-vs-solidity)
-- [About](#about)
-  - [TSender Features](#tsender-features)
-  - [GasliteDrop Comparison](#gaslitedrop-comparison)
-  - [Gas Comparisons](#gas-comparisons)
-    - [Efficiency Improvement vs Solidity](#efficiency-improvement-vs-solidity)
-    - [Actual Gas Costs](#actual-gas-costs)
-- [Getting Started](#getting-started)
-  - [Requirements](#requirements)
-    - [foundry-zksync](#foundry-zksync)
-  - [Installation](#installation)
-  - [Quickstart / Usage](#quickstart--usage)
-    - [Testing](#testing)
-    - [Testing with zkSync](#testing-with-zksync)
-      - [Why no stateful fuzz tests?](#why-no-stateful-fuzz-tests)
-    - [Deployment](#deployment)
-- [Audit Data](#audit-data)
-  - [Known issues](#known-issues)
-  - [Expected Token Integrations](#expected-token-integrations)
-  - [Scope](#scope)
-  - [Chain compatibility](#chain-compatibility)
-    - [Target deployment chains](#target-deployment-chains)
-  - [Notes](#notes)
-- [Acknowledgements](#acknowledgements)
 
 # About
 
@@ -118,7 +112,17 @@ The work here was inspired by the [Gaslite team](https://github.com/PopPunkLLC/G
 <img src="https://res.cloudinary.com/droqoz7lg/image/upload/v1716307743/gas-vs-1000_imfazu.png" width="500" alt="gas-vs-1000.png">
 <br/>
 
-# Getting Started
+## Notes
+
+- There is an issue with how quickly the `foundry-zksync` compiler works, so we avoid compiling the `DeployHuff.s.sol` contract.
+- Compliation takes a _long_ time, so run tests accordingly. It may make sense to run tests with the standard foundry implementation before swapping to the `foundry-zksync` implementation.
+- Please take note of the target deployment chains during audit and check to see if our Huff or Solidity will work there.
+
+[//]: # (contest-details-close)
+
+[//]: # (getting-started-open)
+
+## Getting Started
 
 ## Requirements
 
@@ -198,7 +202,9 @@ make deployYul
 make deployHuff
 ```
 
-# Audit Data
+[//]: # (getting-started-close)
+
+[//]: # (known-issues-open)
 
 ## Known issues
 
@@ -206,12 +212,9 @@ make deployHuff
 - Does not check the return value of ERC20s, but it does check to see if the `transferFrom` or `transfer` call was successful. Meaning ERC20s that return `false` on a failed `transfer` or `transferFrom` but successfully execute, are not supported. If any of the expected token integrations are vulnerable to this pattern, flag it.
 - Upgradable/Deny List tokens can prevent this contract from working. We expect that, in the case that this contract or any recipient is on a deny list, the entire transaction will revert.
 
-## Expected Token Integrations
+[//]: # (known-issues-close)
 
-- USDC
-- USDT
-- LINK
-- WETH
+[//]: # (scope-open)
 
 ## Scope
 
@@ -250,11 +253,14 @@ We expect to be able to run our deploy scripts, and it will prevent us from depl
   - Base
   - Blast
 
-## Notes
+## Expected Token Integrations
 
-- There is an issue with how quickly the `foundry-zksync` compiler works, so we avoid compiling the `DeployHuff.s.sol` contract.
-- Compliation takes a _long_ time, so run tests accordingly. It may make sense to run tests with the standard foundry implementation before swapping to the `foundry-zksync` implementation.
-- Please take note of the target deployment chains during audit and check to see if our Huff or Solidity will work there.
+- USDC
+- USDT
+- LINK
+- WETH
+
+[//]: # (scope-close)
 
 # Acknowledgements
 
