@@ -27,8 +27,6 @@
   - [Notes](#notes)
 - [Acknowledgements](#acknowledgements)
 
-[//]: # (contest-details-open)
-
 ## Contest Details
 
 - Total Prize Pool: $15,000
@@ -43,6 +41,8 @@
 
 - nSLOC: 256
 - Complexity Scope: 284
+
+[//]: # (contest-details-open)
 
 ## Percent Gas Efficiency Improvement vs Solidity
 
